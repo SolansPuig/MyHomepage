@@ -29,7 +29,7 @@
     
     </center>
 
-    <script src="config.js"></script> 
+    <script src="example_config.js"></script> 
     <script src="localization.js"></script> 
     <script>
         const PROXY = "https://api.rss2json.com/v1/api.json?rss_url=";
@@ -62,22 +62,17 @@
         }
 
         function getWeather(city) {
-            fetch(`http://api.openweathermap.org/data/2.5/weather?q=${city}&units=${TEMP_UNITS[0]}&lang=${LANG}&appid=${WEATHER_KEY}`)
-                    .then(response => response.json())
-                    .then(data => {
-                        console.log("Weather from country: " + data.sys.country);
-                        const weather = data.weather[0].description;
-                        const temp = data.main.temp + TEMP_UNITS[1];
-                        const feel_temp = data.main.feels_like + TEMP_UNITS[1];
-                        const icon = data.weather[0].id;
-                        document.getElementById("weather_text").innerHTML = `
-                            ${LOCALE["weather"][0]}<span id="city">${city}</span>
-                            ${LOCALE["weather"][1]}<span id="weather">${weather}</span></br>
-                            ${LOCALE["weather"][2]}<span id="temp">${temp}</span>
-                            ${LOCALE["weather"][3]}<span id="feel_temp">${feel_temp}</span>`;
-                        weatherIcon = icon;
-                        
-            });
+            console.log("Weather from country: UK");
+            const weather = "broken clouds";
+            const temp = 3.55 + TEMP_UNITS[1];
+            const feel_temp = 0.31 + TEMP_UNITS[1];
+            const icon = 803;
+            document.getElementById("weather_text").innerHTML = `
+                ${LOCALE["weather"][0]}<span id="city">${city}</span>
+                ${LOCALE["weather"][1]}<span id="weather">${weather}</span></br>
+                ${LOCALE["weather"][2]}<span id="temp">${temp}</span>
+                ${LOCALE["weather"][3]}<span id="feel_temp">${feel_temp}</span>`;
+            weatherIcon = icon;
         }
         
         function getNews() {
