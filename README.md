@@ -15,7 +15,7 @@ The weather data and icon in the demo is a placeholder, as there's no API key.
 ## Setup
 
 Download the project and create a copy of `example_config.js` named `config.js`. Now
-set *index.html* as your browser's homepage. 
+set `index.html` as your browser's homepage. 
 
 To see the weather information, you'll need an API key for [OpenWeatherMap](https://openweathermap.org/).
 You can get one [here](https://openweathermap.org/price), the free one is enough. Once you get the key, 
