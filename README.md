@@ -5,6 +5,13 @@ This is my browser's homepage. It shows the date and time, the weather and the l
 It's fully responsive and customizable.
 
 
+## Demo
+
+See the demo [here](https://solanspuig.github.io/MyHomepage/).
+
+The weather data and icon in the demo is a placeholder, as there's no API key.
+
+
 ## Setup
 
 Download the project and create a copy of `example_config.js` named `config.js`. Now
