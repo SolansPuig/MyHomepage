@@ -1,4 +1,4 @@
-# MyRssHomepage
+# MyHomepage
 
 This is my browser's homepage. It shows the date and time, the weather and the latest news.
 
