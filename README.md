@@ -2,7 +2,7 @@
 
 This is my browser's homepage. It shows the date and time, the weather and the latest news.
 
-I's fully responsive and customizable.
+It's fully responsive and customizable.
 
 
 ## Setup
