@@ -2,7 +2,7 @@
 
 This is my browser's homepage. It shows the date and time, the weather and the latest news.
 
-It is fully responsive and customizable.
+I's fully responsive and customizable.
 
 
 ## Setup
@@ -10,10 +10,10 @@ It is fully responsive and customizable.
 Download the project and create a copy of `example_config.js` named `config.js`. Now
 set *index.html* as your browser's homepage. 
 
-To see the weather information, you'll need an API Key for [OpenWeatherMap](https://openweathermap.org/).
-You can get one [here](https://openweathermap.org/price), the Free one is enough. Once you get the Key, 
+To see the weather information, you'll need an API key for [OpenWeatherMap](https://openweathermap.org/).
+You can get one [here](https://openweathermap.org/price), the free one is enough. Once you get the key, 
 copy it and paste it into the field `WEATHER_KEY` in your `config.json`. Refresh the browser. The key can take
-a couple hours to be valid, so it's normal that it doesn't work immediately.
+a couple of hours to be valid, so don't worry if it doesn't work immediately.
 
 
 ## Screenshots
@@ -25,7 +25,7 @@ a couple hours to be valid, so it's normal that it doesn't work immediately.
 
 ## Configuration
 
-You can configure the language, the sources of the news feeds and how the weather information is displayed.
+You can configure the language, the sources of the news feeds, and how the weather information is displayed.
 The `example_config.json` should tell you all you need:
 
 ```
@@ -47,14 +47,14 @@ const NEWS_SOURCES = [ // The RSS sources you are interested in. You can leave i
 
 ```
 
-Feel free to add your own language to `localization.js`. If you do that, please make a pull request so everybody that speaks your language 
+Feel free to add your language to `localization.js`. If you do that, please make a pull request so everybody that speaks your language 
 can benefit from your work.
 
 You can input any city you want to get the weather from into `CITY`. Even all the small towns I tried worked fine. If you aren't sure 
 that you are getting the weather from the correct city, look into the JavaScript console. You'll see there a log with the two letter country
 code from where it's getting the weather.
 
-You can also left the `CITY` empty, and it will be detected from your IP. That's not always as precise, as your IP might be registered to 
+You can also leave the `CITY` empty, and it will be detected from your IP. That's not always as precise, as your IP might be registered to 
 a nearby city.
 
 The `ICONS` that show the weather are from [Weather Icons](https://erikflowers.github.io/weather-icons/) and [Open Weather Font](https://websygen.github.io/owfont/).
@@ -72,9 +72,9 @@ const NEWS_SOURCES = [
 ];
 ```
 
-The display order is not guaranteed to be the same from the list. They will be ordered from the first source to answer to the last, and some take longer than others.
+The display order is not guaranteed to be the same as from the list. They will be ordered from the first source to answer to the last, and some take longer than others.
 
-If you are not interested in any news feed, just leave the list empty:
+If you are not interested in any news feed, leave the list empty:
 
 ```
 const NEWS_SORUCES = [];
