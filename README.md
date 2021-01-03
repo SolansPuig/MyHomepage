@@ -20,8 +20,6 @@ a couple of hours to be valid, so don't worry if it doesn't work immediately.
 
 ![The text in English and the weather icon from Open Weather Font](screenshots/1.png)
 
-![The text in Spanish and the weather icon from Weather Icons](screenshots/2.png)
-
 
 ## Configuration
 
