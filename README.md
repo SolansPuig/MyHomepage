@@ -18,9 +18,9 @@ a couple hours to be valid, so it's normal that it doesn't work immediately.
 
 ## Screenshots
 
-![The text in English and the weather icon from Open Weather Font](https://imgur.com/Gul318a)
+![The text in English and the weather icon from Open Weather Font](screenshots/1.png)
 
-![The text in Spanish and the weather icon from Weather Icons](https://imgur.com/A5Dgqn9)
+![The text in Spanish and the weather icon from Weather Icons](screenshots/2.png)
 
 
 ## Configuration
