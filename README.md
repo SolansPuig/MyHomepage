@@ -18,7 +18,7 @@ a couple of hours to be valid, so don't worry if it doesn't work immediately.
 
 ## Screenshots
 
-![The text in English and the weather icon from Open Weather Font](screenshots/1.png)
+![The text in English and the weather icon from Open Weather Font](screenshots/en.png)
 
 
 ## Configuration
