@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8"/>
+    <link rel="stylesheet" type="text/css" href="css/style.css"/>
+
+    <link rel="preconnect" href="https://fonts.gstatic.com"/>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400&display=swap" rel="stylesheet"/> 
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link rel="stylesheet" type="text/css" href="css/owfont.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/weather-icons/2.0.10/css/weather-icons.min.css">    
+</head>
+<body>
+    <center>
+        <h1 id="time_text"><span id="weather_icon"> </span><span id="time"></span></h1>
+        <h2 id="date"></h1>
+
+        <form id="google_search" action="https://google.com/search">
+            <input type="text" name="q" placeholder="Google"></input>
+            <button type="submit"><i class="fa fa-chevron-right"></i></button>
+        </form>
+
+        <h1 id="weather_text"></h1>
+    
+        <h1 id="last_news"></h1>
+    
+        <div id="content"></div>
+    
+    </center>
+
+    <script src="config.js"></script> 
+    <script src="localization.js"></script> 
+    <script>
+        const PROXY = "https://api.rss2json.com/v1/api.json?rss_url=";
+        const DATE_OPTIONS = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+        const DATE_TIME_OPTIONS = { year: 'numeric', month: 'short', day: 'numeric', hour: "2-digit", minute: "numeric" };
+        const LOCALE = LOCALE_ALL[LANG];
+
+        let isDayTime = true;
+        let weatherIcon = 0;
+        
+        function getTime() {
+            const d = new Date();
+            const hours = d.getHours();
+            isDayTime = hours > 6 && hours < 20;
+
+            if (ICONS == 1) {
+                document.getElementById("weather_icon").innerHTML = `<i class="wi wi-owm-${isDayTime ? "day" : "night"}-${weatherIcon}"></i>`;
+            } else if (ICONS == 2) {
+                document.getElementById("weather_icon").innerHTML = `<i class="owf owf-${weatherIcon}-${isDayTime ? "d" : "n"}"></i>`;
+            }
+            
+            document.getElementById("time").innerText = d.getHours() + ":" + d.getMinutes();
+            document.getElementById("date").innerText = d.toLocaleDateString(LOCALE["date"], DATE_OPTIONS);
+            setTimeout(() => { getTime(); }, 500);
+        }
+        getTime();
+
+        if (NEWS_SOURCES.length > 0) {
+            document.getElementById("last_news").innerText = LOCALE["last_news"];
+        }
+
+        function getWeather(city) {
+            fetch(`http://api.openweathermap.org/data/2.5/weather?q=${city}&units=${TEMP_UNITS[0]}&lang=${LANG}&appid=${WEATHER_KEY}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        console.log("Weather from country: " + data.sys.country);
+                        const weather = data.weather[0].description;
+                        const temp = data.main.temp + TEMP_UNITS[1];
+                        const feel_temp = data.main.feels_like + TEMP_UNITS[1];
+                        const icon = data.weather[0].id;
+                        document.getElementById("weather_text").innerHTML = `
+                            ${LOCALE["weather"][0]}<span id="city">${city}</span>
+                            ${LOCALE["weather"][1]}<span id="weather">${weather}</span></br>
+                            ${LOCALE["weather"][2]}<span id="temp">${temp}</span>
+                            ${LOCALE["weather"][3]}<span id="feel_temp">${feel_temp}</span>`;
+                        weatherIcon = icon;
+                        
+            });
+        }
+        
+        function getNews() {
+            let content = document.getElementById("content");
+            content.innerHTML = "";
+            for (let u = 0; u < NEWS_SOURCES.length; u++) {
+                fetch(PROXY + NEWS_SOURCES[u])
+                .then(response => response.json())
+                .then(data => {
+                    let html = "";
+                    for (let i = 0; i < data.items.length; i++) {
+                        
+                        let item = data.items[i];
+                        let image = "";
+                        if (item.enclosure && item.enclosure.link) {
+                            image = item.enclosure.link;
+                        } else {
+                            image = item.thumbnail;
+                        }
+
+                        let date = new Date(item.pubDate);
+
+                        html += `
+                            <article>
+                                <div class="article_image">
+                                    <img src="${image}" width=200px min-height=100%/>
+                                </div>
+                                <div class="article_content">
+                                    <h2><a class="title" href="${item.link}">${item.title}</a></h2>
+                                    <h3>
+                                        <a class="source" href="${data.feed.url}">${data.feed.title}</a> 
+                                        <span class="pubDate">${date.toLocaleString(LOCALE["date"], DATE_TIME_OPTIONS)}</span>
+                                    </h3>
+                                </div>
+                            </article>
+                            `;
+                    }
+
+                    content.innerHTML += html;
+                });
+            }
+        }
+
+        function loadData() {
+            if (CITY == "") {
+                fetch("https://ipapi.co/json")
+                    .then(response => response.json())
+                    .then(data => {
+                        getWeather(data.city);
+                });
+            } else {
+                getWeather(CITY);
+            }
+
+            getNews();
+        }
+
+        loadData();
+
+        document.addEventListener("visibilitychange", () => {
+            if (!document.hidden) {
+                loadData();
+            }
+        }, true);
+        
+    </script>
+</body>
