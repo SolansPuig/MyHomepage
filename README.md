@@ -9,7 +9,7 @@ It's fully responsive and customizable.
 
 See the demo [here](https://solanspuig.github.io/MyHomepage/).
 
-The weather data and icon in the demo is a placeholder, as there's no API key.
+The weather data and icon in the demo are a placeholder, as there's no API key.
 
 
 ## Setup
@@ -30,7 +30,7 @@ a couple of hours to be valid, so don't worry if it doesn't work immediately.
 
 ## Configuration
 
-You can configure the language, the sources of the news feeds, and how the weather information is displayed.
+You can configure the language, your favourite websites, the sources of the news feeds, and how the weather information is displayed.
 The `example_config.json` should tell you all you need:
 
 ```
@@ -42,7 +42,17 @@ const WEATHER_KEY = ""; // Your API key for OpenWeatherMap. Visit https://openwe
 const CITY = "London"; // Leave empty ("") to detect from your IP. It won't be as precise.
 const TEMP_UNITS = ["metric", "°C"]; // The units of the temperature. Alternatives: ["imperial", "°F"] or ["standard", "K"]
 const ICONS = 2 // The icons that represent the weather. Use 0 for none, 1 for Weather Icons or 2 for Open Weather Font.
-                // If you don't use Open Weather Font, you can safely delete the "fonts" folder, as well as the "css/owfont.css" file. 
+                // If you don't use Open Weather Font, you can safely delete the "fonts" folder, as well as the "css/owfont.css" file.
+
+// Favorite websites 
+const WEBSITES = [ // A list of links to the websites you're interested in.
+    {
+        img: "https://www.google.com/gmail/about/static/images/logo-gmail.png?cache=1adba63", // The logo of the website
+        name: "Gmail",  // The name that will be displayed below the logo
+        url: "https://mail.google.com" // The URL to the website
+    },
+    ...
+];
 
 // News
 const NEWS_SOURCES = [ // The RSS sources you are interested in. You can leave it empty to disable that feature.

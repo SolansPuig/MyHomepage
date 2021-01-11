@@ -115,6 +115,42 @@ button[type="submit"]:hover {
     color: steelblue;
 }
 
+#websites {
+    width: 95%;
+    margin-bottom: 100px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+@media only screen and (min-width: 900px) {
+    #websites {
+        width: 80%;
+    }
+}
+
+#websites a {
+    text-decoration: none;
+    margin: 0 30px;
+}
+
+#websites a img {
+    border: 1px solid lightgray;
+    background-color: white;
+    border-radius: 4px;
+    box-shadow: 0 1px 4px 0 rgba(12, 12, 13, 0.2), 0 0 0 1px rgba(0, 0, 0, 0.15);
+}
+
+#websites a img:hover{
+    box-shadow: 0 1px 4px 0 rgba(12, 12, 13, 0.2), 0 0 0 1px rgba(0, 0, 0, 0.25);
+}
+
+#websites a h4 {
+    margin-top: 5px;
+    color: steelblue;
+    font-weight: 400;
+}
+
 #content {
     width: 95%;
 }

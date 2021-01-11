@@ -22,6 +22,8 @@
         </form>
 
         <h1 id="weather_text"></h1>
+
+        <div id="websites"></div>
     
         <h1 id="last_news"></h1>
     
@@ -79,6 +81,17 @@
                         
             });
         }
+
+        let websites = document.getElementById("websites");
+        websites.innerHTML = "";
+        WEBSITES.forEach(web => {
+            websites.innerHTML += `
+                <a href="${web.url}">
+                    <img src="${web.img}" width=100px height=100px/>
+                    <h4>${web.name}</h4>
+                </a>
+            `;
+        });
         
         function getNews() {
             let content = document.getElementById("content");
@@ -87,7 +100,6 @@
                 fetch(PROXY + NEWS_SOURCES[u])
                 .then(response => response.json())
                 .then(data => {
-                    let html = "";
                     for (let i = 0; i < data.items.length; i++) {
                         
                         let item = data.items[i];
@@ -100,7 +112,7 @@
 
                         let date = new Date(item.pubDate);
 
-                        html += `
+                        content.innerHTML += `
                             <article>
                                 <div class="article_image">
                                     <img src="${image}" width=200px min-height=100%/>
@@ -115,8 +127,6 @@
                             </article>
                             `;
                     }
-
-                    content.innerHTML += html;
                 });
             }
         }
